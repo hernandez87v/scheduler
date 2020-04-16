@@ -2,6 +2,53 @@ import React, { useState } from 'react';
 import DayList from 'components/DayList';
 import 'components/Application.scss';
 
+const appointments = [
+  {
+    id: 1,
+    time: '12pm',
+  },
+  {
+    id: 2,
+    time: '1pm',
+    interview: {
+      student: 'Lydia Miller-Jones',
+      interviewer: {
+        id: 1,
+        name: 'Sylvia Palmer',
+        avatar: 'https://i.imgur.com/LpaY82x.png',
+      },
+    },
+  },
+  {
+    id: 3,
+    time: '11am',
+    interview: {
+      student: 'Bart Simpson',
+      interviewer: {
+        id: 3,
+        name: 'Mildred Nazir',
+        avatar: 'https://i.imgur.com/T2WwVfS.png',
+      },
+    },
+  },
+  {
+    id: 1,
+    time: '10am',
+  },
+  {
+    id: 2,
+    time: '3pm',
+    interview: {
+      student: 'Ferris Builler',
+      interviewer: {
+        id: 4,
+        name: 'Cohana Roy',
+        avatar: 'https://i.imgur.com/FK8V841.jpg',
+      },
+    },
+  },
+];
+
 const days = [
   {
     id: 1,
