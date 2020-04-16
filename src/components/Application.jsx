@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import Appointment from 'components/Appointment';
 import DayList from 'components/DayList';
+import axios from 'axios';
+
 import 'components/Application.scss';
 
 const appointments = [
@@ -75,6 +77,10 @@ export default function Application(props) {
   const appointmentList = appointments.map((appointment) => {
     return <Appointment key={appointment.id} {...appointment} />;
   });
+
+  useEffect(() => {
+    axios.get('/api/days').then((response) => setDays(response.data));
+  }, []);
 
   return (
     <main className="layout">
