@@ -20,7 +20,6 @@ export default function Appointment(props) {
   const EDIT = 'EDIT';
   const ERROR_SAVE = 'ERROR_SAVE';
   const ERROR_DELETE = 'ERROR_DELETE';
-  const ERROR_USER = 'ERROR_USER';
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -31,16 +30,17 @@ export default function Appointment(props) {
       student: name,
       interviewer,
     };
-    transition(SAVING);
+    transition(SAVING, true);
+
     props
       .bookInterview(props.id, interview)
-      .then((event) => transition(SHOW))
+      .then(() => transition(SHOW))
       .catch((error) => transition(ERROR_SAVE, true));
   }
 
-  function del() {
-    transition(DELETING);
-    return props
+  function destroy() {
+    transition(DELETING, true);
+    props
       .cancelInterview(props.id)
       .then(() => transition(EMPTY))
       .catch(() => transition(ERROR_DELETE, true));
@@ -82,7 +82,7 @@ export default function Appointment(props) {
         {mode === CONFIRM && (
           <Confirm
             message="Are you sure you would like to delete?"
-            onConfirm={del}
+            onConfirm={destroy}
             onCancel={() => transition(SHOW)}
           />
         )}
