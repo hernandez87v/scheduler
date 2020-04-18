@@ -30,35 +30,43 @@ export default function Application() {
         {...appointment}
         interview={interview}
         interviewers={interviewersForDay}
-        bookInterview={bookInterview(appointment.id, interview)}
+        bookInterview={bookInterview}
       />
     );
   });
+
+  const host = 'http://localhost:3000/api/';
 
   function bookInterview(id, interview) {
     const appointment = {
       ...state.appointments[id],
       interview: { ...interview },
     };
+
     const appointments = {
       ...state.appointments,
       [id]: appointment,
     };
-    // setState({ ...state, appointments });
+
+    return Promise.resolve(
+      axios.put(`${host}appointments/${id}`, appointment)
+    ).then(() => {
+      setState({ ...state, appointments });
+    });
   }
 
   useEffect(() => {
     Promise.all([
-      Promise.resolve(axios.get('http://localhost:3000/api/days')),
-      Promise.resolve(axios.get('http://localhost:3000/api/appointments')),
-      Promise.resolve(axios.get('http://localhost:3000/api/interviewers')),
+      axios.get(`${host}days`),
+      axios.get(`${host}appointments`),
+      axios.get(`${host}interviewers`),
     ])
-      .then((all) => {
+      .then((res) => {
         setState((prev) => ({
           ...prev,
-          days: all[0].data,
-          appointments: all[1].data,
-          interviewers: all[2].data,
+          days: res[0].data,
+          appointments: res[1].data,
+          interviewers: res[2].data,
         }));
       })
       .catch((event) => event.stack);
