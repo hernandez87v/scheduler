@@ -11,7 +11,22 @@ export default function useApplicationData() {
 
   const setDay = (day) => setState({ ...state, day });
 
-  const host = 'http://localhost:3000/api/';
+  const dayNumber = (id) => {
+    const day = Math.floor(id / 5);
+    if (day === 5) return 4;
+    return day;
+  };
+
+  function spotsRemaining(day, dayCopy, appointments) {
+    const appointmentId = dayCopy[day].appointments;
+    let numSpotRem = 0;
+    appointmentId.forEach((appointment) => {
+      if (appointments[appointment].interview === null) {
+        numSpotRem++;
+      }
+    });
+    return numSpotRem;
+  }
 
   function bookInterview(id, interview) {
     const appointment = {
@@ -24,10 +39,23 @@ export default function useApplicationData() {
       [id]: appointment,
     };
 
+    const daysCopy = [...state.days];
+    const specificDayCopy = {
+      ...state.days[dayNumber(id)],
+      spots: spotsRemaining(dayNumber(id), daysCopy, appointments),
+    };
+
+    const days = daysCopy.map((day, index) => {
+      if (index === dayNumber(id)) {
+        return specificDayCopy;
+      }
+      return day;
+    });
+
     return Promise.resolve(
       axios.put(`${host}appointments/${id}`, appointment)
     ).then(() => {
-      setState({ ...state, appointments });
+      setState({ ...state, appointments, days });
     });
   }
 
@@ -41,6 +69,18 @@ export default function useApplicationData() {
       ...state.appointments,
       [id]: appointmentCancel,
     };
+    const daysCopy = [...state.days];
+    const specificDayCopy = {
+      ...state.days[dayNumber(id)],
+      spots: spotsRemaining(dayNumber(id), daysCopy, appointments),
+    };
+
+    const days = daysCopy.map((day, index) => {
+      if (index === dayNumber(id)) {
+        return specificDayCopy;
+      }
+      return day;
+    });
     return axios
       .delete(`${host}appointments/${id}`, {
         appointmentCancel,
@@ -49,9 +89,12 @@ export default function useApplicationData() {
         setState({
           ...state,
           appointments,
+          days,
         });
       });
   }
+
+  const host = 'http://localhost:3000/api/';
 
   useEffect(() => {
     Promise.all([
