@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+
 import 'components/InterviewerList.scss';
 import InterviewerListItem from './InterviewerListItem.jsx';
 
@@ -25,3 +27,8 @@ export default function InterviewerList(props) {
     </>
   );
 }
+
+InterviewerList.propTypes = {
+  value: PropTypes.number,
+  onChange: PropTypes.func.isRequired
+};
