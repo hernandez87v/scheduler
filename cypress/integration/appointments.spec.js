@@ -1,7 +1,9 @@
 describe('Appointments', () => {
-  it('should book an interview', () => {
+  beforeEach(() => {
+    cy.request('GET', 'http://localhost:3000/api/debug/reset');
     cy.visit('/');
-
+  });
+  it('should book an interview', () => {
     cy.contains('Monday');
 
     cy.get('[alt=Add]').first().click();
