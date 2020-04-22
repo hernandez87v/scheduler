@@ -81,7 +81,7 @@ export default function Appointment(props) {
         )}
         {mode === CONFIRM && (
           <Confirm
-            message="Are you sure you would like to delete?"
+            message="Are you sure you want to delete?"
             onConfirm={destroy}
             onCancel={() => transition(SHOW)}
           />
