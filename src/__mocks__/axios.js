@@ -25,6 +25,27 @@ export default {
       });
     }
   }),
+  put: jest.fn((url) => {
+    if (
+      url === 'http://localhost:3000/api/appointments/2' ||
+      url === 'http://localhost:3000/api/appointments/1' ||
+      url === 'http://localhost:3000/api/interviewers'
+    ) {
+      return Promise.resolve({
+        status: 204,
+        statusText: 'No Content',
+      });
+    }
+  }),
+  delete: jest.fn((url) => {
+    if (url === 'http://localhost:3000/api/appointments/2') {
+      return Promise.resolve({
+        data: '',
+        status: 204,
+        statusText: 'No Content',
+      });
+    }
+  }),
 };
 
 const fixtures = {

@@ -49,7 +49,7 @@ export default function Appointment(props) {
   return (
     <>
       <Header time={time} />
-      <article time={time} className="appointment">
+      <article time={time} className="appointment" data-testid="appointment">
         {mode === EMPTY && <Empty onAdd={() => transition(CREATE)} />}
         {mode === SHOW && (
           <Show
@@ -63,7 +63,7 @@ export default function Appointment(props) {
         {mode === CREATE && (
           <Form
             interviewers={interviewers}
-            interviewer={[]}
+            // interviewer={[]}
             onSave={save}
             onCancel={() => back()}
           />
