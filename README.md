@@ -23,3 +23,9 @@ npm test
 ```sh
 npm run storybook
 ```
+
+## Screenshots :framed_picture:
+
+!["Interview Scheduler Page"](https://github.com/hernandez87v/scheduler/blob/master/docs/scheduler-home.png?raw=true)
+
+!["Creating an appointment"](https://github.com/hernandez87v/scheduler/blob/master/docs/scheduler-create.png?raw=true)
