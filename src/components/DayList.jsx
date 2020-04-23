@@ -5,7 +5,6 @@ import DayListItem from './DayListItem.jsx';
 export default function DayList(props) {
   const days = props.days.map((day) => {
     return (
-      // <ul>
       <DayListItem
         key={day.id}
         name={day.name}
@@ -13,7 +12,6 @@ export default function DayList(props) {
         selected={day.name === props.day}
         setDay={props.setDay}
       />
-      // </ul>   --if breaks add back - removed because of "key" error during tests
     );
   });
   return days;

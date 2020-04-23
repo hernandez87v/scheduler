@@ -1,22 +1,24 @@
-# Interview Scheduler
+# Interview Scheduler :date:
 
-## Setup
+Schedule your interviews in one place to keep them organized.
+
+## Setup :package:
 
 Install dependencies with `npm install`.
 
-## Running Webpack Development Server
+## Running Webpack Development Server :computer:
 
 ```sh
 npm start
 ```
 
-## Running Jest Test Framework
+## Running Jest Test Framework :flags:
 
 ```sh
 npm test
 ```
 
-## Running Storybook Visual Testbed
+## Running Storybook Visual Testbed :blue_book:
 
 ```sh
 npm run storybook
