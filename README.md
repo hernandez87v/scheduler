@@ -28,7 +28,7 @@ npm run storybook
 - Webpack, Babel
 - Axios, WebSockets
 - Axios
-- Storybook, Webpack Dev Server, Jest, Testing Library
+- Storybook, Webpack Dev Server, Cypress, Jest, Testing Library
 
 ## Screenshots :framed_picture:
 
