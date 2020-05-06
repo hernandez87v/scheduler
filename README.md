@@ -23,6 +23,12 @@ npm test
 ```sh
 npm run storybook
 ```
+## Completed with:
+- React
+- Webpack, Babel
+- Axios, WebSockets
+- Axios
+- Storybook, Webpack Dev Server, Jest, Testing Library
 
 ## Screenshots :framed_picture:
 
